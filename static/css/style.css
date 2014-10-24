@@ -1,0 +1,385 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}									
+
+h1 {
+	font-size: 1.8em;
+	font-weight: 400;
+}
+h2 {
+	font-size: 1.6em;
+	font-weight: 400;
+}
+h3 {
+	font-size: 1.4em;
+	font-weight: 400;
+}
+article, aside, figure, footer, header, hgroup, nav, section {display: block;}
+
+
+/* force a vertical scrollbar to prevent a jumpy page */
+html {overflow-y: scroll;}
+
+
+/* we use a lot of ULs that aren't bulleted. 
+	don't forget to restore the bullets within content. */
+ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {content: ''; content: none;}
+
+/*
+a {color: #FFFFFF;}
+a:hover, a:active {outline: none; color: #B4E0E8;}
+*/
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+/* tables still need cellspacing="0" in the markup */
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	word-wrap: break-word; /* IE */
+}
+
+table {font-size: inherit; font: 100%;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+td, td img {vertical-align: top;} 
+
+/* Make sure sup and sub don't screw with your line-heights
+	gist.github.com/413930 */
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+/* hand cursor on clickable elements */
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+button {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover */
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+
+/* let's clear some floats */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }  
+
+
+html, body {
+	background-color: #ffffff;
+	background-image: url(/static/img/bg.png);
+	font-family: 'Noto Serif', serif;
+	font-size: 16px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	outline: 0px;
+	height: 100%;
+}
+.defaultbg {
+	background: url(/static/img/default.png) no-repeat center center scroll; 
+}
+
+
+.profilebg {
+	background: url(/static/img/blog2.jpg) no-repeat center center scroll; 
+}
+
+.bgcover {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+/* --- header --- */
+header {
+	width: 100%;
+	display: block;
+	background-color: rgba(0,0,0, 0.3);
+	height: 45px;
+	line-height: 45px;
+}
+header .logo {
+	display:inline-block;
+	width: 50%;
+	padding-left: 30px;
+	height: 45px;
+	line-height: 45px;
+}
+
+header a, .logo a {
+	text-decoration: none;
+}
+.logo a, .logo a:visited, .logo a:link {
+	color: #F20505;
+}
+.logo a:hover {
+	color: #B4E0E8;
+}
+
+#topnav {
+	display:inline-block;
+	width: 40%;
+	height: 45px;
+	vertical-align: top;
+	text-align: right;
+	padding-right: 30px;
+}
+
+#topnav a {
+	display: block;
+	color: #fff;
+	line-height: 42px;
+	padding: 0px 10px;
+}
+
+#topnav a:hover, #topnav a:active, #topnav .selected{
+	color: #B4E0E8;
+	border-bottom: 3px #B4E0E8 inset;
+}
+#topnav li {
+	display: inline-block;
+}
+
+/* --- footer --- */
+#footer-reserve {
+	width: 100%;
+	height: 33px;
+}
+footer{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	display:block;
+}
+
+footer nav {
+	padding: 5px 0px;
+}
+
+footer nav li {
+	display: inline;
+	border-right:1px #666 solid;
+}
+footer nav li:last-child {
+	border: none;
+}
+
+footer nav li.bottomnav {
+	display: none;
+}
+footer nav li a {
+	color: #fff;
+	text-decoration: none;
+	padding: 0px 10px;
+}
+footer nav li a:hover {
+	color: #B4E0E8;
+}
+
+footer nav li .copyright {
+	color: #fff;
+	font-size: 0.8em;
+}
+#content {
+	display: block;
+	width: 100%;
+	height: auto !important;
+	min-height: 100%;
+	margin:0 auto;
+	margin-bottom: -30px;
+}
+
+
+
+.red-font, .error {
+	color: #F20505;
+}
+
+.hilight {
+	font-weight: 700;
+}
+.italic {
+	font-style: italic;
+}
+.smallest {
+	font-size: 0.6em;
+}
+.smaller {
+	font-size: 0.8em;
+}
+.larger12 {
+	font-size: 1.2em;
+}
+.larger14 {
+	font-size: 1.4em;
+}
+.larger20 {
+	font-size: 2em;
+}
+.valign-top {
+	vertical-align: top;
+}
+.capital {
+	font-weight: 800;
+	font-size: 1.5em;
+	text-shadow: -2px 2px 2px #aaa;
+}
+.transparentbg {
+	background: rgb(255, 255, 255) transparent; /* default fallback */
+	background: rgba(255, 255, 255, 0.8); /* nice browsers */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF); /* IE 6/7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)"; /* IE8 */
+}
+.transparentbg-black {
+	background: rgb(0, 0, 0) transparent; /* default fallback */
+	background: rgba(0, 0, 0, 0.8); /* nice browsers */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000, endColorstr=#CC000000); /* IE 6/7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000, endColorstr=#CC000000)"; /* IE8 */
+}
+
+.grayscale-img{
+	-webkit-filter: grayscale(100%); 
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+	filter: gray;
+}
+
+.float-right {
+	float:right;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.sans-font {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+.serif-font {
+	font-family: 'Noto Serif', serif;
+}
+.bold-font {
+	font-weight: 800;
+}
+.rounded-border {
+	border-radius: 15px;
+}
+.rounded-border-right {
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.margin-center {
+	margin:0 auto;
+/*	width: 60%;	*/
+	display: block;
+}
+input[type=text], input[type=password] {
+	width: 100%;
+	height: 28px;
+	margin: 5px 0px;
+}
+
+input.submit {
+	width: 80px;
+}
+
+
+textarea {
+	width: 100%;
+	max-height: 400px;
+	min-height: 150px;
+	margin: 5px 0px;
+	resize: none;
+}
+
+
+@media all and (max-width: 768px) {
+
+	.profilebg {
+		background: url(/static/img/blog2_s.png) no-repeat center top scroll; 
+	}
+	header .logo {
+		display:block;
+		width: 100%;
+		text-align: center;
+		padding-left: 0px;
+		font-size: 0.9em;
+	}
+
+	header #topnav{
+		display: none;
+	}
+
+	footer {
+		height: auto;
+	}
+	footer nav {
+		padding: 0;
+	}
+	footer nav li, footer nav li.bottomnav {
+		display: block;
+	}
+	footer nav li a {
+		display: block;
+		padding: 10px;
+		border-bottom: 1px #666 solid;
+	}
+	footer nav li a:hover {
+		background-color: black;
+	}
+	footer nav li .copyright {
+		display: block;
+		padding: 10px;
+	}
+
+}

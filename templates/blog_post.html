@@ -1,0 +1,41 @@
+{% extends "blog.html" %}
+{% block title %} - {{ post.subject }}{% endblock %}
+{% block single_post_class %}blogpost{% endblock %}
+{% block blog_content %}
+	{% include "blog_singlepost.html" %}
+	<a href="" name="comments"></a>
+	<div id="comments">
+		<div class="sans-font bold-font">Comments</div>
+		{% for comment in comments %}
+		<section id="comment{{comment.key().id()}}" class="single-comment">
+			<div class="comment-left valign-top smaller">{{comment.username}}:<br/>
+				<span class="sans-font italic">
+				{{comment.created|ToLocalTime}}
+				</span>
+			</div>
+			<div class="comment-right valign-top content">{{comment.content}}</div>
+		</section>
+		{% endfor %}
+	</div>
+
+
+	<div id="comment_post">
+		<span class="sans-font">Leave your comment:</span>
+		<form method="post">
+			
+			<label>
+				<input type="text" name="username" value="{{username}}" placeholder="name" />
+			</label>
+			<label>
+				<input type="text" name="email" value="{{email}}" placeholder="email (optional)" />
+			</label>
+			<label>
+				<textarea name="content" placeholder="comment ...">{{content}}</textarea>
+			</label>
+			<div class="error">{{error}}</div>
+			<input type="submit" value="Submit" class="submit">
+		</form>
+	</div>
+{% endblock %}
+{% block page_nav_class %}hide{% endblock %}
+{% block blog_back_class %}show{% endblock %}

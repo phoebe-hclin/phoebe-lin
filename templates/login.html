@@ -1,0 +1,18 @@
+{% extends "shell.html" %}
+{% block title %} - Log In{% endblock %}
+{% block link %}
+	<link rel="stylesheet" href="/static/css/profile.css" />
+{% endblock %}
+
+{% block content %}
+	<section id="login" class="margin-center">
+		<div class="transparentbg">
+    	<form method="post">
+    		<label><input type="text" name="username" value="" placeholder="Username"></label>
+        	<label><input type="password" name="password" value="" placeholder="Password"></label>
+        	<label class="error">{{error}}</label><br />
+			<input type="submit" class="submit" value="Log In">
+    	</form>
+    	</div>
+    </section>
+{% endblock %}

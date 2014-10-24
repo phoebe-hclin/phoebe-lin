@@ -1,0 +1,31 @@
+{% extends "shell.html" %}
+{% block title %} - Sign Up {% endblock %}
+{% block link %}
+	<link rel="stylesheet" href="/static/css/profile.css" />
+{% endblock %}
+
+{% block content %}
+	<section id="signup">
+		<div class="transparentbg">
+    		<form method="post">
+    			<label>
+					<input type="text" name="username" value="{{username}}" placeholder="Enter your username">
+					<span class="error">{{error_username}}</span>
+				</label>
+				<label>
+	            	<input type="password" name="password" value="" placeholder="Enter your password">
+    	        	<span class="error">{{error_password}}</span>
+         		</label>
+         		<label>
+        	 		<input type="password" name="verify" value="" placeholder="Confirm your password">
+          			<span class="error">{{error_verify}}</span>
+          		</label>
+          		<label>
+	          		<input type="text" name="email" value="{{email}}" placeholder="Enter your email (optional)">
+    	      		<span class="error">{{error_email}}</span>
+				</label>
+				<input type="submit" value="Sign Up" class="submit">
+		    </form>
+    	</div>
+    </section>
+{% endblock %}

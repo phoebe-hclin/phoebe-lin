@@ -1,0 +1,73 @@
+{% extends "shell.html" %}
+{% block title %} - Photography{% endblock %}
+{% block link %}
+	<link rel="stylesheet" href="/static/css/photo.css" />
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="/static/css/photo-ie.css" />
+	<![endif]-->
+{% endblock %}
+
+{% block body %}
+<ul class="slideshow">
+	<li>
+		<span>Image 01</span>
+		<div>
+			<h3 class="serif-font">Lake Crescent, WA</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+	<li>
+		<span>Image 02</span>
+		<div>
+			<h3 class="serif-font">Second Beach, WA</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+	<li>
+		<span>Image 03</span>
+		<div>
+			<h3 class="serif-font">Grand Canyon, AZ</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+	<li>
+		<span>Image 04</span>
+		<div>
+			<h3 class="serif-font">Mather Point, Grand Canyon, AZ</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+	<li>
+		<span>Image 05</span>
+		<div>
+			<h3 class="serif-font">Hurricane Ridge, WA</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+	<li>
+		<span>Image 06</span>
+		<div>
+			<h3 class="serif-font">Mount Rainier, WA</h3>
+			<p class="copyright">&copy; Copyright Phoebe Hui-Chun Lin. All Rights Reserved.</p>
+		</div>
+	</li>
+</ul>
+<div class="container">
+	<header class="sans-font red-font">
+		<div class="logo">
+		   <a href="/" title="Home"><h1 class="sans-font">Phoebe Lin &bull; front-end developer &bull; UX designer</h1></a>
+		</div>
+		<nav id="topnav">
+			<ul>
+				<li><a href="/profile/" {% if loadprofile %}class="selected"{% endif %} title="About">About</a></li>
+				<li><a href="/blog/" {% if loadblog %}class="selected"{% endif %} title="Blog">Blog</a></li>
+				<li><a href="/photography/" {% if loadphotography %}class="selected"{% endif %} title="Photography">Photography</a></li>
+			</ul>
+		</nav>
+	</header>	
+</div>
+<div class="footer">{% include "include/footer.html" %}</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

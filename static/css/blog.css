@@ -1,0 +1,248 @@
+/* --- Start Header --- */
+
+header {
+	overflow: hidden;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+#blog-wrap {
+	max-width: 1000px;
+	width: 100%;
+}
+#blog {
+	width: 70%;
+	display:inline-block;
+}
+#blog-sidebar {
+	width: 25%;
+	display:inline-block;
+}
+#blog-nav{
+	padding: 35px 10px;
+}
+#blog-nav li{
+	margin: 4px 0;
+	word-wrap: break-word;
+}
+#blog-nav li a{
+	color: #383838;
+	padding-left: 4px;
+	text-decoration: none;
+}
+#blog-nav li a:hover{
+	color: #B4E0E8;
+}
+#back-to-blog {
+	cursor: pointer;
+}
+#back-to-blog:hover, #back-to-blog:active{
+	color: #B4E0E8;
+}
+
+@media all and (max-width: 768px) {
+
+	header {
+		background-color: #383838;
+	}
+	#blog-wrap {
+		width: auto;
+		padding-top: 45px;
+
+	}
+	#blog-cover{
+		display: none;
+	}
+	#blog {
+		max-width: 768px;
+		width: 100%;
+		display: block;
+	}
+	#blog-sidebar {
+		display: none;
+	}
+
+}
+
+footer {
+	background-color: #383838;
+}
+
+/* --- Start Blog Layout--- */
+#blog-wrap {
+	min-height: 100%;
+	height: 100%;
+	position: relative;
+}
+
+
+#blog-cover img{
+	max-height: 100%;
+	max-width: 100%;
+	box-shadow: 0 3px 3px #222222;
+}
+#blog {
+	min-height: 520px;
+	height: 100%;
+	padding-top: 15px;
+	vertical-align: top;
+}
+#blog-sidebar {
+	vertical-align: top;
+}
+
+.blogfront .viewcount, .blogpost #nav-view {
+	display: none;
+}
+
+.single-post {
+	padding: 20px;
+	border-bottom: 1px solid #dddddd;
+}
+.single-post:last-child {
+	border-bottom: none;
+}
+
+.single-post .title {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 16pt;
+	font-weight: 800;
+	color: #383838;
+	letter-spacing: 3px;
+	text-transform: capitalize;
+	
+}
+
+.single-post .title:hover, .single-post .title:active, .single-post .sub-title a:hover, .single-post .sub-title a:active{
+	color: #B4E0E8;
+	cursor: pointer;
+}
+.single-post .sub-title {
+	color: #383838;
+}
+.single-post .sub-title a {
+	font-style: italic;
+	color: #888888;
+}
+
+
+#blog-page-nav {
+	display:none;
+}
+/* End Blog */
+
+/* Start Blog Content */
+.single-post .content {
+	padding: 20px 0;
+	color: black;
+	line-height: 35px;
+	word-wrap: break-word;
+}
+.single-post .content a {
+	color: #383838;
+}
+.single-post .content a:hover {
+	color: #B4E0E8;
+}
+.single-post .content img {
+	max-width: 100%;
+	cursor: pointer;
+}
+.single-post .content ul {
+	list-style: disc;
+	margin-left: 20px;
+}
+.single-post .content ol {
+	margin-left: 23px;
+}
+
+.more-content {
+	display: none;
+	margin: 0 10px 20px 0;
+}
+.more-content a, .more-content a:visited {
+	text-decoration: none;
+	color: black;
+}
+.more-content a:hover {
+	color: #B4E0E8;
+}
+
+/* Start New Post*/
+#newpost {
+	width: 95%;
+	margin: 10px;
+}
+#newpost .transparentbg{
+	padding: 10px;
+}
+#newpost label{
+	display: block;
+	margin: 0px 0px 20px 0px;
+	color: #333;
+	font-size: 14px;
+}
+#newpost label:last-child{
+	margin: 0px;
+}
+
+/* End New Post */
+
+/* Start Comment*/
+#comments, #comment_post {
+	padding: 20px;
+}
+
+#comments .title{
+	font-size: 1.3em;
+	margin-bottom: 10px;
+	color: #383838;
+}
+#comments .content {
+	font-size: 0.85em;
+	color: #666666;
+}
+
+#comments .single-comment {
+	padding: 10px 0;
+}
+#comments .comment-left {
+	display: inline-block;
+	width: 15%;
+}
+#comments .comment-right {
+	display: inline-block;
+	width: 80%;
+}
+
+#comment_post textarea, #comment_post input[type='text'] {
+	background: transparent;
+}
+/* End Comment*/
+
+/****** Start Photo Gallery ******/
+.photo-gallery {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0px;
+	left: 0px;
+	z-index: 2;	
+}
+.photo-gallery img {
+	max-width: 95%;
+	max-height: 95%;
+	margin: 1% auto;
+	border: 5px solid white;
+}
+
+.single-post .content > img {
+}
+
+.grayscale-img{
+	-webkit-filter: grayscale(100%); 
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+	filter: gray;
+}

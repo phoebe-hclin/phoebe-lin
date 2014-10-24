@@ -1,0 +1,17 @@
+.profilebg {
+	background: url(/static/img/blog2.jpg) no-repeat center center scroll; 
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/img/blog2.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/img/blog2.jpg', sizingMethod='scale')";
+}
+header .logo {
+	display:inline-block;
+	margin: 5px 0px 5px 35px;
+}
+
+#topnav {
+	display:inline-block;
+	position: absolute;
+	top: 15px;
+	right: 12px;
+	font-size: 14pt;
+}

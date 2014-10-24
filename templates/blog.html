@@ -1,0 +1,97 @@
+{% extends "shell.html" %}
+{% block title %} - Blog{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="/static/css/wysihtml5/stylesheet.css">
+	<link rel="stylesheet" href="/static/css/blog.css" />
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="/static/css/blog-ie.css" />
+	<![endif]-->
+{% endblock %}
+
+
+{% block content %}
+{% include "blog_cover.html" %}
+<div id="blog-wrap" class="margin-center {% block single_post_class %}blogfront{% endblock %}">
+	<div id="blog" class="">
+		{% block blog_content %}
+		{% for post in posts %}
+		{% include "blog_singlepost.html" %}		
+		{% endfor %}
+		{% endblock %}
+		<div id="blog-page-nav" class="{% block page_nav_class %}show{% endblock %}">
+			<a href="/blog/nextpage/1">1</a>
+		</div>
+	</div>
+	<div id="blog-sidebar" class="transparentbg">
+		{% block blog_sidebar %}
+		<nav id="blog-nav" class="sans-font">
+			<p id="back-to-blog" class="sans-font {% block blog_back_class %}{% if loadcoding or loaddesign or loadphotography or loadvolunteer or loadstartup or loaduncategorized %}show{% else %}hide{% endif %}{% endblock %}">
+				&lt;&lt;&nbsp;BACK TO LIST<br /><br />
+			</p>
+			<div id="nav-cat">
+				<div class="red-font">Categories</div>
+				<ul>
+				<li>&bull;<a href="/blog/coding" class="{% if loadcoding %}bold-font{% endif %}">Coding</a></li>
+				<li>&bull;<a href="/blog/design" class="{% if loaddesign %}bold-font{% endif %}">Design</a></li>
+				<li>&bull;<a href="/blog/photography" class="{% if loadphotography %}bold-font{% endif %}">Photography</a></li>
+				<li>&bull;<a href="/blog/volunteer" class="{% if loadvolunteer %}bold-font{% endif %}">Volunteer</a></li>
+				<li>&bull;<a href="/blog/startup" class="{% if loadstartup %}bold-font{% endif %}">Startup</a></li>
+				<li>&bull;<a href="/blog/uncategorized" class="{% if loaduncategorized %}bold-font{% endif %}">Uncategorized</a></li>
+				</ul>
+			</div>
+			<br /><br />
+			<div>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- 200x200, created 5/23/09 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:200px;height:200px"
+				     data-ad-client="ca-pub-3291944311138533"
+				     data-ad-slot="0140450263"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+			<br /><br />
+			<div id="nav-post">
+				<div class="red-font">Most Recent Articles</div>
+				<ul>
+				{% for post in recentposts %}
+				<li>&bull;<a href="/blog/{{post.key().id()}}/{% if post.subject_slug %}{{ post.subject_slug }}/{% endif %}">{{post.subject}}</a></li>
+				{% endfor %}
+				</ul>		
+			</div>
+			<br /><br />
+			<div id="nav-post">
+				<div class="red-font">Most Popular Articles</div>
+				<ul>
+				{% for view in popularposts %}
+				{% if view.post_subject %}
+				<li>&bull;<a href="/blog/{{view.post_id}}/{% if view.post_subject_slug %}{{ view.post_subject_slug }}/{% endif %}">{{view.post_subject}}</a></li>
+				{% endif %}
+				{% endfor %}
+				</ul>		
+			</div>
+			<br /><br />
+			<div id="nav-com">
+				<div class="red-font">New Comments</div>
+				<ul>
+				{% for comment in recentcomments %}
+				<li>&bull;<a href="/blog/{{comment.post_id}}/{% if comment.post_subject_slug %}{{ comment.post_subject_slug }}{% endif %}#comments"><span class="serif-font smaller"><span class="italic">{{comment.username}}:</span>&nbsp;{{comment.content[:20]}}</span></a></li>
+				{% endfor %}
+				</ul>
+			</div>
+			<br /><br />
+			<div id="nav-view">
+				<div class="red-font">Stats</div>
+				<span class="smaller">&bull;&nbsp;&nbsp;{{viewcount}} Views</span>
+			</div>
+		</nav>
+		{% endblock %}
+	</div>
+</div>
+{% endblock %}
+
+{% block footer_class %}blog-footer{% endblock %}
+{% block script %}
+<script src="/static/js/functions.js"></script>
+{% endblock %}

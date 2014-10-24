@@ -1,0 +1,85 @@
+#profile, #login, #signup {
+	padding-top: 60px;
+}
+
+/* --- Start Profile --- */
+#profile, #login, #signup {
+	min-height: 450px;
+	overflow: hidden;
+	
+}
+
+#profile .transparentbg {
+	max-width: 350px;
+	display: block;
+	margin: 25px;
+	padding: 10px;
+	float: right;
+}
+
+#profile p {
+	display: block;
+	margin: 0px 0px 20px 0px;
+	color: #333;
+	font-size: 14px;
+}
+#profile p:last-child {
+	margin: 0px;
+}
+
+.socialicons > a {
+	width: 20px;
+	height: 20px;
+	border-radius: 3px;
+	display: inline-block;
+	margin: 0 5px 0 0;
+}
+.socialicons > a:nth-child(1) {
+	background: url('/static/img/socialicons.png') -20px 0px;
+}
+.socialicons > a:nth-child(2) {
+	background: url('/static/img/socialicons.png') -40px 0px;
+}
+.socialicons > a:nth-child(3) {
+	background: url('/static/img/socialicons.png') 0px 0px;
+}
+.socialicons > a:nth-child(4) {
+	background: url('/static/img/socialicons.png') -60px 0px;
+}
+.socialicons > a:nth-child(1):hover {
+	background: url('/static/img/socialicons.png') -20px -20px;
+}
+.socialicons > a:nth-child(2):hover {
+	background: url('/static/img/socialicons.png') -40px -20px;
+}
+.socialicons > a:nth-child(3):hover {
+	background: url('/static/img/socialicons.png') 0px -20px;
+}
+.socialicons > a:nth-child(4):hover {
+	background: url('/static/img/socialicons.png') -60px -20px;
+}
+
+
+/* Start Login Signup */
+#login .transparentbg, #signup .transparentbg {
+	max-width: 350px;
+	display: block;
+	margin: 35px auto;
+	padding: 10px;
+}
+
+@media all and (max-width: 768px) {
+	footer {
+		background-color: #383838;
+	}
+	#profile, #login, #signup {
+		padding-top: 0px;
+		max-width: 95%;
+		margin: 0 auto;
+	}
+
+	#profile .transparentbg{
+		float: none;
+		margin: 25px auto;
+	}
+}

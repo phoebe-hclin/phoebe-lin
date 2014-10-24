@@ -1,0 +1,26 @@
+<section id="post{{post.key().id()}}" class="single-post">
+	<div class="title" onclick="document.location='/blog/{{post.key().id()}}/{% if post.subject_slug %}{{ post.subject_slug }}/{% endif %}';return false;">
+		<p>{{post.subject}}</p>
+	</div>
+	<div class="content">{{post.content}}</div>
+	<div class="more-content smaller"><a href="/blog/{{post.key().id()}}/{% if post.subject_slug %}{{ post.subject_slug }}/{% endif %}">(More...)</a></div>
+	<div class="sub-title sans-font smaller">
+		{{post.created|ToLocalTime("%B %d, %Y")}}
+		&bull;
+		{% if post.category == 0 %}Uncategorized
+		{% elif post.category == 1 %}Coding
+		{% elif post.category == 2 %}Design
+		{% elif post.category == 3 %}Photography
+		{% elif post.category == 4 %}Volunteer
+		{% elif post.category == 5 %}Startup
+		{% endif %}
+		<span class="viewcount">
+		&bull;
+		Views ({{viewcount}})
+		</span>
+		<span class="float-right">
+			<a href="/blog/{{post.key().id()}}/{% if post.subject_slug %}{{ post.subject_slug }}{% endif %}#comments">Comments ( {{post.comment_count}} ) </a>
+		</span>
+	</div>
+</section>
+

@@ -1,0 +1,67 @@
+{% extends "blog.html" %}
+{% block link %}
+	<link rel="stylesheet" href="/static/js/tinyeditor/tinyeditor.css">
+	{{ super() }}
+{% endblock %}
+{% block blog_content %}
+<div id="newpost" class="sans-font">
+	
+	<h2>{% if subject %}Edit Post{% else %}New Post{% endif %}</h2>
+	<form method="post" action="{{uploadurl}}" enctype="multipart/form-data">
+		<input type="text" name="subject" value="{{subject}}" placeholder="Subject">
+		<textarea name="content" id="tinyeditor-textarea" placeholder="Enter your text ...">{{content}}</textarea>
+		<input type="file" name="file" /> <br />
+		<div>
+			<input type="radio" name="category" value="0" {% if not category or category == 0 %}checked{% endif %}>Uncategorized&nbsp;&nbsp;
+			<input type="radio" name="category" value="1" {% if category == 1 %}checked{% endif %}>Coding&nbsp;&nbsp;
+			<input type="radio" name="category" value="2" {% if category == 2 %}checked{% endif %}>Design&nbsp;&nbsp;
+			<input type="radio" name="category" value="3" {% if category == 3 %}checked{% endif %}>Photography&nbsp;&nbsp;
+			<input type="radio" name="category" value="4" {% if category == 4 %}checked{% endif %}>Volunteer&nbsp;&nbsp;
+			<input type="radio" name="category" value="5" {% if category == 5 %}checked{% endif %}>Startup&nbsp;&nbsp;
+		</div>
+		<div class="error">{{error}}</div>
+		<input type="submit" value="Submit" class="submit">
+	</form>
+</div>
+
+{% endblock %}
+
+{% block blog_back_class %}show{% endblock %}
+
+
+{% block script %}
+
+{{ super() }}
+
+<script type="text/javascript" src="/static/js/tinyeditor/tiny.editor.packed.js"></script>
+
+<script type="text/javascript">
+
+var editor = new TINY.editor.edit('editor', {
+	id: 'tinyeditor-textarea',
+	width: "100%",
+	height: 300,
+	cssclass: 'tinyeditor',
+	controlclass: 'tinyeditor-control',
+	rowclass: 'tinyeditor-header',
+	dividerclass: 'tinyeditor-divider',
+	controls: ['bold', 'italic', 'underline', 'strikethrough', '|', 'subscript', 'superscript', '|',
+		'orderedlist', 'unorderedlist', '|', 'outdent', 'indent', '|', 'leftalign',
+		'centeralign', 'rightalign', 'blockjustify', '|', 'unformat', '|', 'undo', 'redo', 'n',
+		'font', 'size', 'style', '|', 'image', 'hr', 'link', 'unlink', '|', 'print'],
+	footer: true,
+	fonts: ['Verdana','Arial','Georgia','Trebuchet MS'],
+	xhtml: true,
+	//cssfile: 'custom.css',
+	bodyid: 'editor',
+	footerclass: 'tinyeditor-footer',
+	toggle: {text: 'source', activetext: 'wysiwyg', cssclass: 'toggle'},
+	resize: {cssclass: 'resize'}
+});
+$(document).ready(function(){ 
+	$(".submit").click(function(){ 
+		editor.post(); 
+	});
+});
+</script>
+{% endblock %}

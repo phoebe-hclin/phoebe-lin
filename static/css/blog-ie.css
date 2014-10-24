@@ -1,0 +1,40 @@
+	header {
+		overflow: hidden;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 1;
+	}
+	#blog-wrap {
+		max-width: 1000px;
+		width: 100%;
+	}
+	#blog {
+		width: 70%;
+		display:inline-block;
+	}
+	#blog-sidebar {
+		width: 25%;
+		display:inline-block;
+	}
+	#blog-nav{
+		padding: 35px 10px;
+	}
+	#blog-nav li{
+		margin: 4px 0;
+		word-wrap: break-word;
+	}
+	#blog-nav li a{
+		color: #383838;
+		padding-left: 4px;
+		text-decoration: none;
+	}
+	#blog-nav li a:hover{
+		color: #B4E0E8;
+	}
+	#back-to-blog {
+		cursor: pointer;
+	}
+	#back-to-blog:hover, #back-to-blog:active{
+		color: #B4E0E8;
+	}
