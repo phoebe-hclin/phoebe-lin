@@ -56,7 +56,7 @@ class WebHandler(webapp2.RequestHandler):
 ##### home page handlers
 class IndexHandler(WebHandler):
     def get(self):
-        self.redirect('/blog/')
+        self.render("profile.html", loadprofile = True)
         return
 
 class ProfileHandler(WebHandler):

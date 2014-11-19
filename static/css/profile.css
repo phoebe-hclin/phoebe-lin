@@ -26,7 +26,13 @@
 #profile p:last-child {
 	margin: 0px;
 }
-
+#profile a, #profile a:visited {
+	text-decoration: none;
+	color: #333;
+}
+#profile a:hover {
+	font-weight: bold;
+}
 .socialicons > a {
 	width: 20px;
 	height: 20px;
