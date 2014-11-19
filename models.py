@@ -2,9 +2,9 @@ import random
 import hashlib
 from string import letters
 from google.appengine.ext import db
-from google.appengine.dist import use_library
-use_library('django', '1.3')
-from django.template.defaultfilters import slugify
+#from google.appengine.dist import use_library
+#use_library('django', '1.3')
+#from django.template.defaultfilters import slugify
 
 ##### User model
 def make_salt(length = 5):
@@ -196,7 +196,7 @@ class View(db.Model):
             subject_slug = ""
             if p:
                 subject = p.subject
-                subject_slug = slugify(subject)
+                #subject_slug = slugify(subject)
             v.post_subject = subject
             v.post_subject_slug = subject_slug
         v.put()
