@@ -164,10 +164,12 @@ class BlogFrontNext(BlogHandler):
         
 class PostPage(BlogHandler):
     def get(self, post_id):
-        post = single_post(post_id)
-        if not post:
-            self.error(404)
+        try:
+            post = single_post(post_id)
+        except:
+            self.render('error.html')
             return
+        
         comments = comments_by_post(post_id)
         if not comments:
             comments = []
