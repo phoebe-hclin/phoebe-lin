@@ -97,7 +97,7 @@ class Post(db.Model):
     @classmethod
     def save(cls, subject, content, category):
         #subject_slug = slugify(subject)
-        p = Post(parent = posts_key(), subject = subject, content = content, category = category, subject_slug = subject_slug)
+        p = Post(parent = posts_key(), subject = subject, content = content, category = category)
         p.comment_count = 0
         p.put()
         return p
