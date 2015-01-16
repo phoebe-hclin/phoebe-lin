@@ -156,7 +156,7 @@ class BlogFront(BlogHandler):
             views = popular_posts()
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
         except:
-            self.render(error.html)
+            self.render('error.html')
 
 class BlogFrontNext(BlogHandler):
     def get(self, page_id):
