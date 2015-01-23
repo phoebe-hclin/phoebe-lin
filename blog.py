@@ -156,6 +156,7 @@ class BlogFront(BlogHandler):
             views = popular_posts()
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
         except:
+            logging.error('posts is None? %s, comments is None? %s, views is None? %s', posts==None, comments==None, views==None )
             self.render('error.html')
 
 class BlogFrontNext(BlogHandler):
@@ -167,6 +168,7 @@ class PostPage(BlogHandler):
         try:
             post = single_post(post_id)
         except:
+            logging.error('post is None? %s', post==None)
             self.render('error.html')
             return
         
