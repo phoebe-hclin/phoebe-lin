@@ -13,6 +13,7 @@ from google.appengine.ext import db
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.api import memcache
+from google.appengine.runtime import apiproxy_errors
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -155,8 +156,8 @@ class BlogFront(BlogHandler):
             comments = top_comments()
             views = popular_posts()
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
-        except:
-            logging.error(sys.exc_info()[0])
+        except apiproxy_errors.OverQuotaError, message:
+            logging.error(message)
             self.render('error.html')
 
 class BlogFrontNext(BlogHandler):
@@ -167,8 +168,8 @@ class PostPage(BlogHandler):
     def get(self, post_id):
         try:
             post = single_post(post_id)
-        except:
-            logging.error(sys.exc_info()[0])
+        except apiproxy_errors.OverQuotaError, message:
+            logging.error(message)
             self.render('error.html')
             return
         
