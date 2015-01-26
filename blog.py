@@ -173,12 +173,12 @@ class PostPage(BlogHandler):
             self.render('error.html')
             return
         
-        comments = comments_by_post(post_id)
-        if not comments:
-            comments = []
-        recentcomments = top_comments(10)
-        posts2 = top_posts(10)
-        views = popular_posts(10, True)
+        comments = [] #comments_by_post(post_id)
+        #if not comments:
+        #    comments = []
+        recentcomments = [] #top_comments(10)
+        posts2 = [] #top_posts(10)
+        views = [] #popular_posts(10, True)
         self.render("blog_post.html", loadblog = True, post = post, comments = comments, recentposts = posts2, recentcomments = recentcomments, viewcount=get_view_count(post_id), popularposts = views)
     def post(self, post_id):
         post = single_post(post_id)
