@@ -152,7 +152,7 @@ def get_view_count(post_id):
 class BlogFront(BlogHandler):
     def get(self):
         try:
-            posts = [] #top_posts()
+            posts = top_posts()
             comments = [] #top_comments()
             views = [] #popular_posts()
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
@@ -173,9 +173,9 @@ class PostPage(BlogHandler):
             self.render('error.html')
             return
         
-        comments = [] #comments_by_post(post_id)
-        #if not comments:
-        #    comments = []
+        comments = comments_by_post(post_id)
+        if not comments:
+            comments = []
         recentcomments = [] #top_comments(10)
         posts2 = [] #top_posts(10)
         views = [] #popular_posts(10, True)
