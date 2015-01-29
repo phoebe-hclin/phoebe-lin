@@ -1,5 +1,6 @@
 import random
 import hashlib
+import logging
 from string import letters
 from google.appengine.ext import db
 #from google.appengine.dist import use_library
@@ -143,6 +144,18 @@ class Comment(db.Model):
     def by_created(cls, limit):
         comments = Comment.all().order('-created').ancestor(comments_key()).run(limit=limit)
         return list(comments)
+    
+    @classmethod
+    def delete_all_with_empty_content(cls):
+        comments = Comment.all().ancestor(comments_key()).run()
+        for comment in comments:
+            if len(comment.content.strip()) == 0:
+                post_id = comment.post_id
+                logging.info('deleting comment from %s in %s', comment.username, comment.post_subject)
+                db.delete(comment)
+                post = Post.by_id(post_id)
+                post.update_comment_count(post_id, post.comment_count-1)
+        return
 
     @classmethod
     def save(cls, post_id, username, content, email):
@@ -152,9 +165,10 @@ class Comment(db.Model):
         if p:
             subject = p.subject
             #subject_slug = slugify(subject)
-        c = Comment(parent=comments_key(), post_id = int(post_id), post_subject = subject, username = username, content = content, email = email, post_subject_slug = subject_slug)
-        c.put()
-        return c
+        if content and len(content.strip()) != 0:
+            c = Comment(parent=comments_key(), post_id = int(post_id), post_subject = subject, username = username, content = content, email = email, post_subject_slug = subject_slug)
+            c.put()
+            return c
 
 ##### page view count - View model
 def views_key(group = 'siteadmin'):

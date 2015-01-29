@@ -148,13 +148,30 @@ def popular_posts(limit = 10, update = False):
 def get_view_count(post_id):
     return View.increment_count(post_id).count
 
+def update_memcache(post_id = -1):
+    if post_id != -1:
+        single_post(post_id, True)
+        comments_by_post(post_id, True)
+    top_posts(10, True)
+    top_comments(10, True)
+
+### DEBUG: CLEAR EMPTY COMMENT ####
+def CLEAR_EMPTY_COMMENTS():
+    Comment.delete_all_with_empty_content()
+    
 #### various blog handler ####
 class BlogFront(BlogHandler):
     def get(self):
         try:
             posts = top_posts()
-            comments = [] #top_comments()
-            views = [] #popular_posts()
+            comments = top_comments()
+            views = popular_posts()
+            try:
+                CLEAR_EMPTY_COMMENTS()
+                update_memcache()
+            except:
+                logging.error('Delete all comments with empty content failed.')
+
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
         except apiproxy_errors.OverQuotaError, message:
             logging.error(message)
@@ -173,12 +190,12 @@ class PostPage(BlogHandler):
             self.render('error.html')
             return
         
-        comments = comments_by_post(post_id)
+        comments = comments_by_post(post_id, True)
         if not comments:
             comments = []
-        recentcomments = [] #top_comments(10)
-        posts2 = [] #top_posts(10)
-        views = [] #popular_posts(10, True)
+        recentcomments = top_comments(10, True)
+        posts2 = top_posts(10)
+        views = popular_posts(10, True)
         self.render("blog_post.html", loadblog = True, post = post, comments = comments, recentposts = posts2, recentcomments = recentcomments, viewcount=get_view_count(post_id), popularposts = views)
     def post(self, post_id):
         post = single_post(post_id)
@@ -189,21 +206,19 @@ class PostPage(BlogHandler):
         email = self.request.get('email')
         content = self.request.get('content')
 
-        if username and content:
+        if username and content and len(content.strip()) != 0:
             c = Comment.save(post_id, username, content, email)
             count = 0
             if post.comment_count:
                 count = post.comment_count
             post.update_comment_count(post_id, count+1) 
-            
-            single_post(post_id, True)
-            top_posts(10, True)
-            top_comments(10, True)
-            comments_by_post(post_id, True)
+        
+            update_memcache(post_id)
+
             self.redirect('/blog/%s' % post_id)
         else:
             error = "username and/or content, please!"
-            self.render("blog_post.html", loadblog = True, username = username, email = email, content = content, error = error)
+            self.render("blog_post.html", loadblog = True, post = post, username = username, email = email, content = content, error = error)
 
 class EditPostPage(BlogHandler):
     def get(self, post_id):
