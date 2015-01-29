@@ -163,15 +163,15 @@ def CLEAR_EMPTY_COMMENTS():
 class BlogFront(BlogHandler):
     def get(self):
         try:
-            posts = top_posts()
-            comments = top_comments()
-            views = popular_posts()
             try:
                 CLEAR_EMPTY_COMMENTS()
                 update_memcache()
             except:
                 logging.error('Delete all comments with empty content failed.')
 
+            posts = top_posts()
+            comments = top_comments()
+            views = popular_posts()
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
         except apiproxy_errors.OverQuotaError, message:
             logging.error(message)
