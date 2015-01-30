@@ -132,7 +132,10 @@ def comments_by_post(post_id, update = False):
     comments = memcache.get(key)
     if comments is None or update:
         comments = Comment.by_post(post_id)
-        memcache.set(key, comments)
+        if len(comments) > 20:
+            memcache.set(key, comments[:20])
+        else:
+            memcache.set(key, comments)
     return comments
 
 def popular_posts(limit = 10, update = False):
