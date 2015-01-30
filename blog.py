@@ -160,7 +160,7 @@ def update_memcache(post_id = -1):
 
 ### DEBUG: CLEAR EMPTY COMMENT ####
 def CLEAR_EMPTY_COMMENTS():
-    Comment.delete_all_with_empty_content()
+    Comment.delete_all_bot_creation()
     
 #### various blog handler ####
 class BlogFront(BlogHandler):
@@ -208,15 +208,16 @@ class PostPage(BlogHandler):
         username = self.request.get('username')
         email = self.request.get('email')
         content = self.request.get('content')
+        terms = self.request.get('terms', None)
 
         if username and content and len(content.strip()) != 0:
-            c = Comment.save(post_id, username, content, email)
-            count = 0
-            if post.comment_count:
-                count = post.comment_count
-            post.update_comment_count(post_id, count+1) 
-        
-            update_memcache(post_id)
+            if terms is None:
+                c = Comment.save(post_id, username, content, email)
+                count = 0
+                if post.comment_count:
+                    count = post.comment_count
+                post.update_comment_count(post_id, count+1) 
+                update_memcache(post_id)
 
             self.redirect('/blog/%s' % post_id)
         else:

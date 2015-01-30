@@ -1,6 +1,7 @@
 import random
 import hashlib
 import logging
+import datetime
 from string import letters
 from google.appengine.ext import db
 #from google.appengine.dist import use_library
@@ -146,10 +147,10 @@ class Comment(db.Model):
         return list(comments)
     
     @classmethod
-    def delete_all_with_empty_content(cls):
+    def delete_all_bot_creation(cls):
         comments = Comment.all().ancestor(comments_key()).run()
         for comment in comments:
-            if len(comment.content.strip()) == 0:
+            if len(comment.content.strip()) == 0 or comment.created > datetime.datetime(2014,1,1):
                 post_id = comment.post_id
                 logging.info('deleting comment from %s in %s', comment.username, comment.post_subject)
                 db.delete(comment)
