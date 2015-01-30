@@ -160,18 +160,12 @@ def update_memcache(post_id = -1):
 
 ### DEBUG: CLEAR EMPTY COMMENT ####
 def CLEAR_EMPTY_COMMENTS():
-    Comment.delete_all_bot_creation()
+    Comment.delete_all_with_empty_content()
     
 #### various blog handler ####
 class BlogFront(BlogHandler):
     def get(self):
         try:
-            try:
-                CLEAR_EMPTY_COMMENTS()
-                update_memcache()
-            except:
-                logging.error('Delete all comments with empty content failed.')
-
             posts = top_posts()
             comments = top_comments()
             views = popular_posts()
@@ -193,12 +187,12 @@ class PostPage(BlogHandler):
             self.render('error.html')
             return
         
-        comments = comments_by_post(post_id, True)
+        comments = comments_by_post(post_id)
         if not comments:
             comments = []
-        recentcomments = top_comments(10, True)
+        recentcomments = top_comments(10)
         posts2 = top_posts(10)
-        views = popular_posts(10, True)
+        views = popular_posts(10)
         self.render("blog_post.html", loadblog = True, post = post, comments = comments, recentposts = posts2, recentcomments = recentcomments, viewcount=get_view_count(post_id), popularposts = views)
     def post(self, post_id):
         post = single_post(post_id)
@@ -217,6 +211,7 @@ class PostPage(BlogHandler):
                 if post.comment_count:
                     count = post.comment_count
                 post.update_comment_count(post_id, count+1) 
+        
                 update_memcache(post_id)
 
             self.redirect('/blog/%s' % post_id)
