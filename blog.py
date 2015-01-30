@@ -202,10 +202,11 @@ class PostPage(BlogHandler):
         username = self.request.get('username')
         email = self.request.get('email')
         content = self.request.get('content')
-        terms = self.request.get('terms', None)
-
+        terms = self.request.get('terms', '')
+        logging.info('Post comment by %s with terms = %s', username, terms)
+        
         if username and content and len(content.strip()) != 0:
-            if terms is None:
+            if len(terms) == 0:
                 c = Comment.save(post_id, username, content, email)
                 count = 0
                 if post.comment_count:
