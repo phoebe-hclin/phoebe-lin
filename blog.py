@@ -204,7 +204,8 @@ class PostPage(BlogHandler):
         content = self.request.get('content')
 
         trapemail = self.request.get('email') #trap field
-        logging.info('Post comment by %s with trapemail = %s', username, trapemail)
+        if len(trapemail) > 0:
+            logging.info('Post comment by %s with trapemail = %s', username, trapemail)
 
         if username and content and len(content.strip()) != 0:
             if len(trapemail) == 0:
