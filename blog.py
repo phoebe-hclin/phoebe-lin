@@ -166,9 +166,9 @@ def CLEAR_EMPTY_COMMENTS():
 class BlogFront(BlogHandler):
     def get(self):
         try:
-            posts = top_posts()
-            comments = top_comments()
-            views = popular_posts()
+            posts = top_posts(True)
+            comments = top_comments(True)
+            views = popular_posts(True)
             self.render('blog.html', loadblog = True, posts = posts, recentposts = posts, recentcomments = comments, viewcount = get_view_count('-1'), popularposts = views )
         except apiproxy_errors.OverQuotaError, message:
             logging.error(message)
@@ -181,18 +181,18 @@ class BlogFrontNext(BlogHandler):
 class PostPage(BlogHandler):
     def get(self, post_id):
         try:
-            post = single_post(post_id)
+            post = single_post(post_id, True)
         except apiproxy_errors.OverQuotaError, message:
             logging.error(message)
             self.render('error.html')
             return
         
-        comments = comments_by_post(post_id)
+        comments = comments_by_post(post_id, True)
         if not comments:
             comments = []
-        recentcomments = top_comments(10)
-        posts2 = top_posts(10)
-        views = popular_posts(10)
+        recentcomments = top_comments(10, True)
+        posts2 = top_posts(10, True)
+        views = popular_posts(10, True)
         self.render("blog_post.html", loadblog = True, post = post, comments = comments, recentposts = posts2, recentcomments = recentcomments, viewcount=get_view_count(post_id), popularposts = views)
     def post(self, post_id):
         post = single_post(post_id)
@@ -200,14 +200,15 @@ class PostPage(BlogHandler):
             self.error(404)
             return
         username = self.request.get('username')
-        email = self.request.get('email')
+        email2 = self.request.get('email2')
         content = self.request.get('content')
-        terms = self.request.get('terms', '')
-        logging.info('Post comment by %s with terms = %s', username, terms)
-        
+
+        trapemail = self.request.get('email') #trap field
+        logging.info('Post comment by %s with trapemail = %s', username, trapemail)
+
         if username and content and len(content.strip()) != 0:
-            if len(terms) == 0:
-                c = Comment.save(post_id, username, content, email)
+            if len(trapemail) == 0:
+                c = Comment.save(post_id, username, content, email2)
                 count = 0
                 if post.comment_count:
                     count = post.comment_count
@@ -218,7 +219,7 @@ class PostPage(BlogHandler):
             self.redirect('/blog/%s' % post_id)
         else:
             error = "username and/or content, please!"
-            self.render("blog_post.html", loadblog = True, post = post, username = username, email = email, content = content, error = error)
+            self.render("blog_post.html", loadblog = True, post = post, username = username, email = email2, content = content, error = error)
 
 class EditPostPage(BlogHandler):
     def get(self, post_id):

@@ -26,14 +26,14 @@
 			<label>
 				<input type="text" name="username" value="{{username}}" placeholder="name" />
 			</label>
+			<label style="display:none">
+				<input type="text" name="email" value="" placeholder="email (optional)" />
+			</label>
 			<label>
-				<input type="text" name="email" value="{{email}}" placeholder="email (optional)" />
+				<input type="text" name="email2" value="{{email}}" placeholder="email (optional)" />
 			</label>
 			<label>
 				<textarea name="content" placeholder="comment ...">{{content}}</textarea>
-			</label>
-			<label style="display:none;">
-				<input type="checkbox" name="terms" value="terms"> I agree to the terms and conditions.
 			</label>
 			<div class="error">{{error}}</div>
 			<input type="submit" value="Submit" class="submit">
